@@ -1,0 +1,153 @@
+:root{--black:#0a0a0a;--surface:#111111;--card:#181818;--border:#252525;--accent:#e8ff00;--accent2:#ff4d00;--text:#f0f0f0;--muted:#888;--green:#00e676;--blue:#64b4ff;--purp:#a855f7;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;padding-top:52px;}
+
+/* ── TOP MENU ── */
+.top-menu{position:fixed;top:0;left:0;right:0;z-index:9999;height:52px;background:rgba(10,10,10,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:8px;}
+.top-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);letter-spacing:.1em;margin-right:12px;}
+.top-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:7px 16px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;border-radius:2px;transition:all .2s;white-space:nowrap;}
+.top-btn:hover{border-color:var(--accent);color:var(--accent);}
+.top-btn.active{background:var(--accent);color:var(--black);border-color:var(--accent);}
+.top-btn.home-btn{border-color:rgba(100,180,255,.4);color:var(--blue);}
+.top-btn.home-btn:hover,.top-btn.home-btn.active{background:var(--blue);color:var(--black);border-color:var(--blue);}
+
+/* ── PAGE ── */
+.page{display:none;}.page.active{display:block;}
+
+/* ── HERO ── */
+.hero{min-height:calc(100vh - 52px);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 24px 80px;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(232,255,0,.07) 0%,transparent 70%),repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.02) 39px,rgba(255,255,255,.02) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.02) 39px,rgba(255,255,255,.02) 40px);position:relative;}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--black));}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;border:1px solid rgba(232,255,0,.3);padding:6px 16px;border-radius:2px;display:inline-block;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(64px,14vw,160px);line-height:.9;letter-spacing:-.02em;}
+.hero h1 span{color:var(--accent);}
+.hero-sub{font-size:clamp(14px,2.5vw,18px);color:var(--muted);max-width:520px;line-height:1.6;margin:24px auto 0;}
+.stats-bar{display:flex;gap:40px;margin-top:56px;flex-wrap:wrap;justify-content:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;}
+.stat-label{font-size:11px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:4px;}
+
+/* ── WEEK NAV ── */
+.week-nav{display:flex;gap:4px;overflow-x:auto;padding:14px 24px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:100;scrollbar-width:none;}
+.week-nav::-webkit-scrollbar{display:none;}
+.day-pill{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 18px;border-radius:2px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .2s;white-space:nowrap;cursor:pointer;background:transparent;}
+.day-pill:hover{border-color:var(--accent);color:var(--accent);}
+.day-pill.active{background:var(--accent);color:var(--black);border-color:var(--accent);}
+
+/* ── SECTION ── */
+.section{padding:72px 24px;max-width:1200px;margin:0 auto;}
+.section-header{display:flex;align-items:flex-start;gap:24px;margin-bottom:48px;}
+.day-tag{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;color:var(--accent);flex-shrink:0;}
+.day-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,56px);line-height:1;}
+.day-meta{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;}
+.badge{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;padding:4px 10px;border-radius:2px;text-transform:uppercase;}
+.badge-yellow{background:rgba(232,255,0,.1);color:var(--accent);border:1px solid rgba(232,255,0,.25);}
+.badge-red{background:rgba(255,77,0,.1);color:var(--accent2);border:1px solid rgba(255,77,0,.25);}
+.badge-green{background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.25);}
+.badge-blue{background:rgba(100,180,255,.1);color:var(--blue);border:1px solid rgba(100,180,255,.25);}
+.badge-purp{background:rgba(168,85,247,.1);color:var(--purp);border:1px solid rgba(168,85,247,.25);}
+.day-divider{border:none;border-top:1px solid var(--border);margin:0 24px;}
+
+/* ── PROTOCOL BOX ── */
+.protocol-box{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px 28px;margin-bottom:28px;}
+.protocol-title{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:14px;}
+.protocol-list{list-style:none;}
+.protocol-list li{font-size:13px;color:var(--muted);padding-left:18px;position:relative;margin-bottom:6px;}
+.protocol-list li::before{content:'→';position:absolute;left:0;color:var(--accent);}
+
+/* ── WORKOUT GRID + CARD ── */
+.workout-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
+.workout-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:border-color .25s,transform .2s;}
+.workout-card:hover{border-color:rgba(232,255,0,.4);transform:translateY(-2px);}
+
+/* SVG exercise illustration */
+.card-svg-wrap{width:100%;height:190px;display:flex;align-items:center;justify-content:center;background:#0a0a14;cursor:pointer;position:relative;overflow:hidden;}
+.card-svg-wrap svg{width:100%;height:100%;}
+.card-svg-wrap::after{content:'▶ CLICK TO ANIMATE';position:absolute;bottom:8px;right:10px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(232,255,0,.4);opacity:0;transition:opacity .2s;}
+.workout-card:hover .card-svg-wrap::after{opacity:1;}
+
+.card-body{padding:18px;}
+.muscle-tag{font-size:10px;color:var(--accent2);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px;}
+.exercise-name{font-weight:700;font-size:15px;margin-bottom:12px;}
+.sets-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px;}
+.chip{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 10px;background:var(--surface);border:1px solid var(--border);border-radius:2px;}
+.chip.hi{background:rgba(232,255,0,.08);border-color:rgba(232,255,0,.3);color:var(--accent);}
+.tip{font-size:12px;color:var(--muted);line-height:1.6;border-left:2px solid var(--accent);padding-left:10px;}
+
+/* ── PLAY ANIM BUTTON ── */
+.play-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:calc(100% - 32px);margin:4px 16px 16px;padding:10px;background:rgba(232,255,0,.07);border:1px solid rgba(232,255,0,.3);color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all .2s;}
+.play-btn:hover{background:rgba(232,255,0,.16);border-color:var(--accent);}
+.play-btn.blue-btn{background:rgba(100,180,255,.07);border-color:rgba(100,180,255,.3);color:var(--blue);}
+.play-btn.blue-btn:hover{background:rgba(100,180,255,.16);border-color:var(--blue);}
+
+/* ── ANIM MODAL ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-bg.open{display:flex;}
+.modal{background:#0d0d1a;border:1px solid var(--border);border-radius:6px;width:100%;max-width:640px;overflow:hidden;}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);}
+.modal-head-title{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);letter-spacing:.08em;}
+.modal-close-btn{background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;padding:5px 12px;border-radius:2px;font-size:16px;transition:all .2s;}
+.modal-close-btn:hover{border-color:var(--accent2);color:var(--accent2);}
+.modal-canvas-area{width:100%;height:310px;background:#07070f;position:relative;overflow:hidden;}
+.modal-canvas-area::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.06) 2px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:1;}
+#animCanvas{display:block;position:relative;z-index:0;}
+.modal-info{padding:12px 18px;border-top:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.modal-ex{font-family:'Bebas Neue',sans-serif;font-size:22px;}
+.modal-muscle-lbl{font-size:11px;color:var(--accent2);font-weight:700;letter-spacing:.1em;flex:1;}
+.rep-bar-bg{width:140px;height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.rep-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--purp));border-radius:2px;transition:width .2s;}
+.rep-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);}
+.modal-ctrl{padding:10px 18px;background:#111;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;}
+.ctrl-btn{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.1em;padding:7px 14px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;border-radius:2px;transition:all .2s;text-transform:uppercase;}
+.ctrl-btn:hover{border-color:var(--accent);color:var(--accent);}
+.ctrl-btn.pr{background:var(--accent);color:var(--black);border-color:var(--accent);}
+.spd-sel{background:#111;border:1px solid var(--border);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:10px;padding:6px 8px;border-radius:2px;cursor:pointer;margin-left:auto;}
+
+/* ── NUTRITION ── */
+.nut-strip{background:linear-gradient(135deg,#111,#181818);border:1px solid var(--border);border-radius:4px;padding:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:28px;}
+.nut-val{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;}
+.nut-lbl{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.1em;}
+.nut-foods{font-size:12px;color:var(--text);margin-top:8px;line-height:1.6;}
+.nut-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px;}
+
+/* ── HOME PAGE ── */
+#home-page .hero{background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(100,180,255,.07) 0%,transparent 70%),repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.02) 39px,rgba(255,255,255,.02) 40px);}
+#home-page .hero-eyebrow{color:var(--blue);border-color:rgba(100,180,255,.3);}
+#home-page .hero h1 span{color:var(--blue);}
+#home-page .stat-num{color:var(--blue);}
+#home-page .muscle-tag{color:var(--blue);}
+#home-page .chip.hi{background:rgba(100,180,255,.08);border-color:rgba(100,180,255,.3);color:var(--blue);}
+#home-page .tip{border-left-color:var(--blue);}
+#home-page .protocol-title{color:var(--blue);}
+#home-page .protocol-list li::before{color:var(--blue);}
+#home-page .workout-card:hover{border-color:rgba(100,180,255,.4);}
+#home-page .card-svg-wrap::after{color:rgba(100,180,255,.4);}
+#home-page .day-tag{color:var(--blue);}
+
+/* Home split tabs */
+.split-nav{display:flex;gap:4px;overflow-x:auto;padding:14px 24px;background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:100;scrollbar-width:none;}
+.split-nav::-webkit-scrollbar{display:none;}
+.split-tab{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:2px;border:1px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.split-tab:hover{border-color:var(--blue);color:var(--blue);}
+.split-tab.active{background:var(--blue);color:var(--black);border-color:var(--blue);}
+.home-split{display:none;}.home-split.active{display:block;}
+
+/* ── TABLE ── */
+.schedule-table{width:100%;border-collapse:collapse;font-size:13px;}
+.schedule-table th{text-align:left;padding:10px 16px;color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;border-bottom:1px solid var(--border);}
+.schedule-table td{padding:10px 16px;border-bottom:1px solid var(--border);}
+.schedule-table tr:last-child td{border-bottom:none;}
+.td-split{color:var(--accent2);}
+.td-muted{color:var(--muted);}
+.td-green{color:var(--green);}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:44px 24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);border-top:1px solid var(--border);letter-spacing:.12em;}
+
+@media(max-width:600px){
+  .section{padding:44px 16px;}
+  .section-header{flex-direction:column;gap:8px;}
+  .day-tag{font-size:48px;}
+  .workout-grid{grid-template-columns:1fr;}
+  .nut-strip{padding:22px;}
+  .stats-bar{gap:22px;}
+}
