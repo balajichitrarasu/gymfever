@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>GymFever — Complete Workout Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- TOP MENU -->
+<nav class="top-menu">
+  <span class="top-logo" style="color:#e8ff00;font-size:22px;letter-spacing:.15em">GYMFEVER</span>
+  <button class="top-btn active" data-page="gym" onclick="showPage('gym')">&#127947; GYM PLAN</button>
+  <button class="top-btn home-btn" data-page="home" onclick="showPage('home')">&#127968; HOME WORKOUTS</button>
+</nav>
+
+<!-- ANIMATION MODAL -->
+<div class="modal-bg" id="animModalBg" onclick="if(event.target===this)closeAnimModal()">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="modal-head-title">EXERCISE ANIMATION</span>
+      <button class="modal-close-btn" onclick="closeAnimModal()">&#x2715;</button>
+    </div>
+    <div class="modal-canvas-area">
+      <canvas id="animCanvas"></canvas>
+    </div>
+    <div class="modal-info">
+      <div>
+        <div class="modal-ex" id="animExName">Exercise</div>
+        <div class="modal-muscle-lbl" id="animMuscle">Muscle Group</div>
+      </div>
+      <div class="rep-bar-bg"><div class="rep-bar-fill" id="repBarFill"></div></div>
+      <span class="rep-lbl" id="repLbl">REP 0</span>
+    </div>
+    <div class="modal-ctrl">
+      <button class="ctrl-btn pr" id="animPlayBtn" onclick="togglePlay()">&#9208; PAUSE</button>
+      <select class="spd-sel" onchange="setSpeed(this.value)">
+        <option value="0.5">0.5x</option>
+        <option value="1" selected>1x</option>
+        <option value="1.5">1.5x</option>
+        <option value="2">2x</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ GYM PAGE ═══════════ -->
+<div class="page active" id="gym-page">
+
+<section class="hero">
+  <div class="hero-eyebrow">GymFever &middot; 2025 Training Program</div>
+  <h1>BUILD<br/><span>HARD</span></h1>
+  <p class="hero-sub">A complete 6-day hypertrophy &amp; strength program. Budget nutrition &mdash; eggs, soya chunks, milk, peanuts &amp; green gram.</p>
+  <div class="stats-bar">
+    <div><div class="stat-num">6</div><div class="stat-label">Training Days</div></div>
+    <div><div class="stat-num">36</div><div class="stat-label">Exercises</div></div>
+    <div><div class="stat-num">150+</div><div class="stat-label">Sets / Week</div></div>
+    <div><div class="stat-num">1</div><div class="stat-label">Recovery Day</div></div>
+  </div>
+</section>
+
+<nav class="week-nav">
+  <a class="day-pill active" data-href="day1" href="#day1">D1 &middot; Chest+Tri</a>
+  <a class="day-pill" data-href="day2" href="#day2">D2 &middot; Back+Bi</a>
+  <a class="day-pill" data-href="day3" href="#day3">D3 &middot; Legs</a>
+  <a class="day-pill" data-href="day4" href="#day4">D4 &middot; Shoulders+Abs</a>
+  <a class="day-pill" data-href="day5" href="#day5">D5 &middot; Arms+Forearms</a>
+  <a class="day-pill" data-href="day6" href="#day6">D6 &middot; Upper Power</a>
+  <a class="day-pill" data-href="day7" href="#day7">D7 &middot; Recovery</a>
+</nav>
+<section id="day1" class="section">
+  <div class="section-header">
+    <div class="day-tag">01</div>
+    <div><div class="day-name">CHEST + TRICEPS</div><div class="day-meta"><span class="badge badge-yellow">Push Day</span><span class="badge badge-red">~75 min</span><span class="badge badge-blue">6 Exercises</span></div></div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>5 min light treadmill / jump rope</li><li>2 &times; 15 push-ups (slow eccentric)</li><li>Band pull-aparts 2 &times; 15 &middot; shoulder circles 30 sec</li><li>Empty-bar bench press 2 &times; 20</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bench" onclick="openAnimModal('bench')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Primary &middot; Pectoralis Major</div>
+    <div class="exercise-name">Flat Barbell Bench Press</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 6&ndash;8</span><span class="chip">Rest 90s</span><span class="chip">Progressive</span></div>
+    <div class="tip">Retract scapula, slight arch. Touch sternum, drive feet into floor. Add 2.5 kg when you hit 8 clean reps for 2 sessions.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('bench')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-incline_press" onclick="openAnimModal('incline_press')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Upper Chest &middot; Clavicular Head</div>
+    <div class="exercise-name">Incline Dumbbell Press</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10&ndash;12</span><span class="chip">Rest 75s</span><span class="chip">30&deg; angle</span></div>
+    <div class="tip">Elbows at 45&deg; to torso &mdash; not flared. Squeeze at top, long stretch at bottom. No bouncing.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('incline_press')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-cable_fly" onclick="openAnimModal('cable_fly')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Chest &middot; Isolation / Stretch</div>
+    <div class="exercise-name">Cable Cross-over / Pec Deck</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15</span><span class="chip">Rest 60s</span><span class="chip">Light&ndash;Med</span></div>
+    <div class="tip">Slow 3-second eccentric. Arms slightly bent, focus on the squeeze not the weight.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('cable_fly')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pushdown" onclick="openAnimModal('pushdown')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Triceps &middot; Lateral Head</div>
+    <div class="exercise-name">Cable Tricep Pushdown (V-bar)</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 12</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Elbows pinned to ribs throughout. Full extension at bottom, pause 1 sec. Don't lean forward.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('pushdown')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-oh_ext" onclick="openAnimModal('oh_ext')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Triceps &middot; Long Head</div>
+    <div class="exercise-name">Overhead Dumbbell Extension</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12</span><span class="chip">1 DB &middot; 2 hands</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Long head only fully stretched overhead. Control descent. Core tight to avoid lumbar hyperextension.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('oh_ext')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-dips" onclick="openAnimModal('dips')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Triceps &middot; All 3 Heads</div>
+    <div class="exercise-name">Tricep Dips (Parallel Bars)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; Failure</span><span class="chip">Torso upright</span><span class="chip">Rest 75s</span></div>
+    <div class="tip">Keep torso vertical &mdash; leaning forward shifts load to chest. Full lockout at top.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('dips')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</section>
+<hr class="day-divider"/><section id="day2" class="section">
+  <div class="section-header">
+    <div class="day-tag">02</div>
+    <div><div class="day-name">BACK + BICEPS</div><div class="day-meta"><span class="badge badge-yellow">Pull Day</span><span class="badge badge-red">~80 min</span><span class="badge badge-blue">6 Exercises</span></div></div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>Cat-cow + thoracic rotations</li><li>Dead-hang 3 &times; 20 sec</li><li>Band pull-aparts 2 &times; 15 &middot; face-pulls 2 &times; 15</li><li>Light lat pulldown 2 &times; 15</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-deadlift" onclick="openAnimModal('deadlift')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Entire Posterior Chain</div>
+    <div class="exercise-name">Conventional Deadlift</div>
+    <div class="sets-row"><span class="chip hi">Warm-up 2&times;5</span><span class="chip">4 &times; 5</span><span class="chip">Rest 2&ndash;3 min</span></div>
+    <div class="tip">Bar over mid-foot, lats braced (protect armpits), drive floor away. King of all exercises.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('deadlift')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pullup" onclick="openAnimModal('pullup')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Lats &middot; Width Builder</div>
+    <div class="exercise-name">Pull-Ups / Lat Pulldown</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 8&ndash;10</span><span class="chip">Pronated grip</span><span class="chip">Rest 90s</span></div>
+    <div class="tip">Full hang at bottom, chin over bar at top. If pull-ups not yet possible, use lat pulldown with same rep scheme.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('pullup')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bent_row" onclick="openAnimModal('bent_row')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Mid-Back &middot; Rhomboids &middot; Rear Delt</div>
+    <div class="exercise-name">Barbell Bent-Over Row</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 8</span><span class="chip">Overhand grip</span><span class="chip">Rest 90s</span></div>
+    <div class="tip">Torso at 45&ndash;60&deg;, brace core. Pull bar to lower chest. Squeeze shoulder blades at top.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('bent_row')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-cable_row" onclick="openAnimModal('cable_row')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Mid-Back &middot; Thickness</div>
+    <div class="exercise-name">Seated Cable Row (Close-grip)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12</span><span class="chip">Rest 75s</span></div>
+    <div class="tip">No swinging &mdash; control the eccentric. Full stretch at front, hard squeeze at back.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('cable_row')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bicep_curl" onclick="openAnimModal('bicep_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Biceps &middot; Long + Short Head</div>
+    <div class="exercise-name">Barbell / EZ-Bar Bicep Curl</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 10</span><span class="chip">Elbows fixed</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Supinate the wrist at the top. No body English. Slow 2-sec eccentric for maximum TUT.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('bicep_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-hammer_curl" onclick="openAnimModal('hammer_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Brachialis &middot; Brachioradialis</div>
+    <div class="exercise-name">Hammer Curl (Neutral Grip)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12&ndash;15</span><span class="chip">Alternating</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Neutral grip throughout &mdash; do not supinate. Builds brachialis which pushes bicep peak up visually.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('hammer_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</section>
+<hr class="day-divider"/><section id="day3" class="section">
+  <div class="section-header">
+    <div class="day-tag">03</div>
+    <div><div class="day-name">LEGS</div><div class="day-meta"><span class="badge badge-yellow">Lower Body</span><span class="badge badge-red">~85 min</span><span class="badge badge-blue">6 Exercises</span></div></div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>5 min stationary bike</li><li>Hip circles, leg swings, pigeon stretch 60 sec each</li><li>Bodyweight squat 2 &times; 20 &middot; glute bridges 2 &times; 15</li><li>Goblet squat with light DB 2 &times; 12</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-squat" onclick="openAnimModal('squat')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Glutes &middot; Hamstrings</div>
+    <div class="exercise-name">Barbell Back Squat</div>
+    <div class="sets-row"><span class="chip hi">Warm-up 3&times;8</span><span class="chip">4 &times; 6&ndash;8</span><span class="chip">Rest 2&ndash;3 min</span></div>
+    <div class="tip">High bar, depth below parallel, knees track toes. Chest up, brace 360&deg; around spine. King lift.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('squat')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-leg_press" onclick="openAnimModal('leg_press')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Machine</div>
+    <div class="exercise-name">Leg Press (Machine)</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 12</span><span class="chip">Feet shoulder width</span><span class="chip">Rest 90s</span></div>
+    <div class="tip">Don't lock knees at top. High foot = more glutes; low foot = more quad.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('leg_press')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-rdl" onclick="openAnimModal('rdl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Hamstrings &middot; Glutes</div>
+    <div class="exercise-name">Romanian Deadlift (RDL)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10</span><span class="chip">Slow eccentric</span><span class="chip">Rest 90s</span></div>
+    <div class="tip">Hip hinge &mdash; not a squat. Bar close to legs, neutral spine. Feel the hamstring stretch at the bottom.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('rdl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-lunge" onclick="openAnimModal('lunge')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Glutes &middot; Balance</div>
+    <div class="exercise-name">Walking Dumbbell Lunges</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12 each leg</span><span class="chip">Rest 75s</span></div>
+    <div class="tip">Long stride, front shin vertical, back knee nearly touches floor. Great single-leg stability builder.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('lunge')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-leg_ext" onclick="openAnimModal('leg_ext')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Isolation</div>
+    <div class="exercise-name">Leg Extension (Machine)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15</span><span class="chip">Pause at top</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">1-second isometric hold at full extension. Light-to-moderate weight only.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('leg_ext')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-calf" onclick="openAnimModal('calf')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Calves &middot; Gastrocnemius</div>
+    <div class="exercise-name">Standing Calf Raise</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 20</span><span class="chip">Full ROM</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Full stretch at bottom (heel below platform), full peak contraction at top. Calves respond to high reps.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('calf')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</section>
+<hr class="day-divider"/><section id="day4" class="section">
+  <div class="section-header">
+    <div class="day-tag">04</div>
+    <div><div class="day-name">SHOULDERS + ABS</div><div class="day-meta"><span class="badge badge-yellow">Push + Core</span><span class="badge badge-red">~70 min</span><span class="badge badge-blue">7 Exercises</span></div></div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>Arm circles forward + backward 30 sec each</li><li>Band pull-aparts 2 &times; 20 &middot; dislocates 2 &times; 10</li><li>Face-pulls 2 &times; 15 (external rotation activation)</li><li>Light seated DB press 2 &times; 15</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-shoulder_press" onclick="openAnimModal('shoulder_press')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Anterior + Medial Delt</div>
+    <div class="exercise-name">Seated DB Overhead Press</div>
+    <div class="sets-row"><span class="chip hi">Warm-up 2&times;12</span><span class="chip">4 &times; 8&ndash;10</span><span class="chip">Rest 90s</span></div>
+    <div class="tip">Seated removes lower-back compensation. Press to lockout overhead, lower to ear level.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('shoulder_press')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-lateral_raise" onclick="openAnimModal('lateral_raise')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Medial Delt &middot; Width Builder</div>
+    <div class="exercise-name">Dumbbell Lateral Raise</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 15</span><span class="chip">Slight forward lean</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Lead with elbows not hands. Raise to shoulder height only. Light weight with strict form always wins.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('lateral_raise')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-rear_fly" onclick="openAnimModal('rear_fly')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Posterior Delt &middot; Posture</div>
+    <div class="exercise-name">Rear Delt Fly / Face Pull</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15</span><span class="chip">External rotation</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Most lifters neglect rear delts. External rotation at end is key. Balances shoulder health.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('rear_fly')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-shrug" onclick="openAnimModal('shrug')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Traps &middot; Upper</div>
+    <div class="exercise-name">Barbell Shrug</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15</span><span class="chip">Pause at top</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Hold 1 sec at the top. No rolling &mdash; straight up and down. Heavy enough to challenge.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('shrug')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-plank" onclick="openAnimModal('plank')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Core &middot; Anterior Foundation</div>
+    <div class="exercise-name">Plank (Standard + Variations)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 60 sec</span><span class="chip">Progress to 90s</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Hollow body position &mdash; don't let hips sag or pike. Add 5s each week. Add side-plank variations.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('plank')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-leg_raise" onclick="openAnimModal('leg_raise')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Lower Abs &middot; Hip Flexors</div>
+    <div class="exercise-name">Hanging Leg Raise</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12&ndash;15</span><span class="chip">No swinging</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Posterior pelvic tilt at the top &mdash; curl your pelvis toward your chest for full ab contraction.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('leg_raise')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</section>
+<hr class="day-divider"/><section id="day5" class="section">
+  <div class="section-header">
+    <div class="day-tag">05</div>
+    <div><div class="day-name">ARMS + FOREARMS</div><div class="day-meta"><span class="badge badge-yellow">Push + Pull</span><span class="badge badge-red">~65 min</span><span class="badge badge-blue">6 Exercises</span></div></div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>Wrist circles, finger extensions 60 sec</li><li>Resistance band bicep curl 2 &times; 20</li><li>Band tricep pushdown 2 &times; 20</li><li>Light DB concentration curl 1 &times; 15 each arm</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bicep_curl" onclick="openAnimModal('bicep_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Biceps &middot; Peak Builder</div>
+    <div class="exercise-name">Barbell Curl (Superset A1)</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 10</span><span class="chip">&rarr; A2 no rest</span><span class="chip">90s after pair</span></div>
+    <div class="tip">Superset with skull crushers. No rest between A1&rarr;A2. Rest 90s after the pair. Incredible pump.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('bicep_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-skull" onclick="openAnimModal('skull')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Triceps &middot; Long Head</div>
+    <div class="exercise-name">EZ-Bar Skull Crusher (SS-A2)</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 10</span><span class="chip">After A1</span><span class="chip">90s after pair</span></div>
+    <div class="tip">Lower bar to forehead &mdash; slightly behind for more long-head stretch. Elbows point to ceiling.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('skull')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-incline_press" onclick="openAnimModal('inc_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Biceps &middot; Long Head Stretch</div>
+    <div class="exercise-name">Incline DB Curl (SS-B1)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12</span><span class="chip">45&deg; bench</span><span class="chip">75s after pair</span></div>
+    <div class="tip">Incline creates unique stretch on long head unavailable in standing curls. Arms straight down at start.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('inc_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pushdown" onclick="openAnimModal('pushdown')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Triceps &middot; Lateral Head</div>
+    <div class="exercise-name">Single-Arm Cable Pushdown (B2)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12 each</span><span class="chip">After B1</span><span class="chip">75s after pair</span></div>
+    <div class="tip">Single-arm work identifies imbalances. Twist wrist at bottom for extra lateral head activation.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('pushdown')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bicep_curl" onclick="openAnimModal('wrist_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Forearms &middot; Flexors</div>
+    <div class="exercise-name">Barbell Wrist Curl</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 20</span><span class="chip">Wrist off bench</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Full ROM &mdash; fingers unroll at bottom, full curl at top. Forearms respond to high rep ranges.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('wrist_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-hammer_curl" onclick="openAnimModal('rev_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Forearms &middot; Extensors</div>
+    <div class="exercise-name">Reverse Barbell Curl</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15</span><span class="chip">Pronated grip</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Targets brachioradialis. Builds forearm thickness. Often undertrained &mdash; include every arms day.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('rev_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</section>
+<hr class="day-divider"/><section id="day6" class="section">
+  <div class="section-header">
+    <div class="day-tag">06</div>
+    <div><div class="day-name">UPPER BODY POWER</div><div class="day-meta"><span class="badge badge-yellow">Full Upper</span><span class="badge badge-red">~75 min</span><span class="badge badge-blue">6 Exercises</span></div></div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>5 min rowing machine (moderate pace)</li><li>T-Y-W raises 2 &times; 10 &middot; band pull-aparts 2 &times; 15</li><li>Shoulder mobility drills: external rotation focus</li><li>Empty bar OH press + bench 2 &times; 10 each</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-standing_ohp" onclick="openAnimModal('standing_ohp')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Shoulders &middot; Core &middot; Triceps</div>
+    <div class="exercise-name">Standing Barbell Overhead Press</div>
+    <div class="sets-row"><span class="chip hi">Ramp-up 3&times;5</span><span class="chip">5 &times; 5</span><span class="chip">Rest 2 min</span></div>
+    <div class="tip">Bar path slightly back as it clears face, then vertical. Core braced like a plank throughout.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('standing_ohp')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-dips" onclick="openAnimModal('dips')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Chest &middot; Triceps &middot; Anterior Delt</div>
+    <div class="exercise-name">Weighted Dips</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 6</span><span class="chip">Add weight belt</span><span class="chip">Rest 2 min</span></div>
+    <div class="tip">Slight forward lean for chest emphasis. Add dip belt with 5&ndash;10 kg once bodyweight becomes too easy.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('dips')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pullup" onclick="openAnimModal('pullup')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Lats &middot; Biceps &middot; Upper Back</div>
+    <div class="exercise-name">Weighted Pull-Up</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 5&ndash;6</span><span class="chip">+5&ndash;10 kg</span><span class="chip">Rest 2 min</span></div>
+    <div class="tip">Track PR every week. Adding weight here is a reliable indicator of overall back progress.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('pullup')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bent_row" onclick="openAnimModal('bent_row')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Back &middot; Explosive Pull</div>
+    <div class="exercise-name">Pendlay Row (Dead-Stop)</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 6</span><span class="chip">Reset each rep</span><span class="chip">Rest 2 min</span></div>
+    <div class="tip">Bar returns to floor between each rep for dead stop. More explosive than standard row.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('bent_row')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pushup_h" onclick="openAnimModal('plyo_push')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Chest &middot; Shoulders &middot; Power</div>
+    <div class="exercise-name">Plyometric Push-Up</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10</span><span class="chip">Hands leave floor</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Press up explosively &mdash; hands leave floor at top. Develops power (force &times; velocity). Land softly.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('plyo_push')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-face_pull" onclick="openAnimModal('face_pull')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Rear Delt &middot; Rotator Cuff &middot; Health</div>
+    <div class="exercise-name">Face Pulls (Injury Prevention)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 20</span><span class="chip">Light weight</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">End every upper day with face pulls. External rotation at end is key. Protects rotator cuff.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('face_pull')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</section>
+<hr class="day-divider"/><section id="day7" class="section">
+  <div class="section-header">
+    <div class="day-tag">07</div>
+    <div><div class="day-name">ACTIVE RECOVERY</div><div class="day-meta"><span class="badge badge-green">Rest Day</span><span class="badge badge-blue">No Lifting</span><span class="badge badge-yellow">~40 min</span></div></div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>This IS the session &mdash; no warm-up needed</li><li>10 min light walk or cycling (HR under 120 bpm)</li><li>Full body foam rolling &mdash; quads, lats, thoracic spine, calves (10 min)</li><li>Sleep minimum 7&ndash;8 hours &mdash; this is where you grow</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-lunge" onclick="openAnimModal('hip_stretch')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Lower Body &middot; Recovery</div>
+    <div class="exercise-name">Hip Flexor + Quad Stretch</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 60s each side</span><span class="chip">Hold each position</span></div>
+    <div class="tip">Kneeling lunge position. Gently push hips forward. Critical after heavy squat and deadlift days.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('hip_stretch')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-rdl" onclick="openAnimModal('foam_roll')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Spine &middot; Lower Back</div>
+    <div class="exercise-name">Cat-Cow + Child's Pose + Cobra</div>
+    <div class="sets-row"><span class="chip hi">5 min sequence</span><span class="chip">Flow slowly</span></div>
+    <div class="tip">Spinal decompression sequence. Relieves post-deadlift back tightness. Do this EVERY recovery day.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('foam_roll')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-rear_fly" onclick="openAnimModal('shoulder_str')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Upper Body &middot; Posture</div>
+    <div class="exercise-name">Cross-Body Shoulder + Doorway Chest</div>
+    <div class="sets-row"><span class="chip hi">2 &times; 45s each</span><span class="chip">Both arms</span></div>
+    <div class="tip">After heavy pressing, anterior delts get tight. These two stretches actively counter that postural issue.</div>
+  </div>
+  <button class="play-btn" onclick="openAnimModal('shoulder_str')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</section>
+<hr class="day-divider"/>
+<section class="section" id="nutrition">
+  <div class="section-header">
+    <div class="day-tag" style="color:var(--accent2)">NUT</div>
+    <div><div class="day-name">BUDGET NUTRITION PLAN</div>
+    <div class="day-meta">
+      <span class="badge badge-green">Budget Friendly</span>
+      <span class="badge badge-yellow">High Protein</span>
+      <span class="badge badge-blue">~2200&ndash;2600 kcal</span>
+    </div></div>
+  </div>
+  <div class="nut-strip">
+    <div><div class="nut-val">150g</div><div class="nut-lbl">Protein / Day</div><div class="nut-foods">Eggs (6&ndash;8), soya chunks (100g dry), 500ml milk, 50g peanuts</div></div>
+    <div><div class="nut-val">280g</div><div class="nut-lbl">Carbs / Day</div><div class="nut-foods">Rice, roti, oats, bananas, green gram dal</div></div>
+    <div><div class="nut-val">65g</div><div class="nut-lbl">Fats / Day</div><div class="nut-foods">Peanuts, egg yolks, groundnut oil, milk fat</div></div>
+    <div><div class="nut-val">3L</div><div class="nut-lbl">Water / Day</div><div class="nut-foods">Add 500ml extra on training days. Coconut water for electrolytes.</div></div>
+  </div>
+  <div class="nut-grid">
+    <div class="protocol-box" style="margin:0"><div class="protocol-title">Pre-Workout (45 min before)</div><ul class="protocol-list"><li>2 bananas + 3 boiled eggs</li><li>OR oats with 200ml milk + peanuts</li><li>Black coffee (optional)</li></ul></div>
+    <div class="protocol-box" style="margin:0"><div class="protocol-title">Post-Workout (within 30 min)</div><ul class="protocol-list"><li>Soya chunks 80g dry + rice 200g cooked</li><li>500ml milk + 2 boiled eggs</li><li>OR green gram dal + 2 rotis + egg whites</li></ul></div>
+    <div class="protocol-box" style="margin:0"><div class="protocol-title">Before Bed</div><ul class="protocol-list"><li>200ml warm milk (casein &mdash; slow digesting)</li><li>10g peanut butter or raw peanuts</li><li>Feeds muscle repair during sleep</li></ul></div>
+  </div>
+</section>
+<section class="section" style="padding-top:0">
+  <div class="protocol-box">
+    <div class="protocol-title">Weekly Schedule Overview</div>
+    <div style="overflow-x:auto;margin-top:8px">
+    <table class="schedule-table">
+      <thead><tr><th>DAY</th><th>SPLIT</th><th>EXERCISES</th><th>TOTAL SETS</th><th>DURATION</th></tr></thead>
+      <tbody>
+        <tr><td>Monday</td><td class="td-split">Chest + Triceps</td><td class="td-muted">6</td><td class="td-muted">20 sets</td><td class="td-muted">~75 min</td></tr>
+        <tr><td>Tuesday</td><td class="td-split">Back + Biceps</td><td class="td-muted">6</td><td class="td-muted">22 sets</td><td class="td-muted">~80 min</td></tr>
+        <tr><td>Wednesday</td><td class="td-split">Legs</td><td class="td-muted">6</td><td class="td-muted">21 sets</td><td class="td-muted">~85 min</td></tr>
+        <tr><td>Thursday</td><td class="td-split">Shoulders + Abs</td><td class="td-muted">7</td><td class="td-muted">23 sets</td><td class="td-muted">~70 min</td></tr>
+        <tr><td>Friday</td><td class="td-split">Arms + Forearms</td><td class="td-muted">6</td><td class="td-muted">19 sets</td><td class="td-muted">~65 min</td></tr>
+        <tr><td>Saturday</td><td class="td-split">Upper Body Power</td><td class="td-muted">6</td><td class="td-muted">21 sets</td><td class="td-muted">~75 min</td></tr>
+        <tr><td>Sunday</td><td class="td-green">Active Recovery</td><td class="td-muted">&mdash;</td><td class="td-muted">Stretching</td><td class="td-muted">~40 min</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+<footer>GYMFEVER CHITRARASU &middot; 6-DAY HYPERTROPHY PROGRAM &middot; UNITED INSTITUTE OF TECHNOLOGY &middot; 2025</footer>
+</div><!-- end gym-page -->
+
+<div class="page" id="home-page">
+<section class="hero" style="min-height:60vh">
+  <div class="hero-eyebrow" style="color:var(--blue);border-color:rgba(100,180,255,0.3)">Zero Equipment &middot; Real Muscle Gain</div>
+  <h1>HOME<br/><span>GAINS</span></h1>
+  <p class="hero-sub">5 complete splits. 35 exercises. All you need is your body, a chair, and a floor. Designed for real hypertrophy &mdash; not just cardio.</p>
+  <div class="stats-bar">
+    <div><div class="stat-num">5</div><div class="stat-label">Splits</div></div>
+    <div><div class="stat-num">35</div><div class="stat-label">Exercises</div></div>
+    <div><div class="stat-num">0</div><div class="stat-label">Equipment</div></div>
+    <div><div class="stat-num">6</div><div class="stat-label">Days / Week</div></div>
+  </div>
+</section>
+<nav class="split-nav">
+  <button class="split-tab active" data-split="push" onclick="showSplit('push')">PUSH &middot; Mon+Thu</button>
+  <button class="split-tab" data-split="pull" onclick="showSplit('pull')">PULL &middot; Tue+Fri</button>
+  <button class="split-tab" data-split="legs" onclick="showSplit('legs')">LEGS &middot; Wed+Sat</button>
+  <button class="split-tab" data-split="core" onclick="showSplit('core')">CORE+ABS &middot; Daily</button>
+  <button class="split-tab" data-split="full" onclick="showSplit('full')">FULL BODY &middot; Sun</button>
+</nav>
+<div class="home-split  active" id="split-push">
+<div class="section">
+  <div class="section-header">
+    <div class="day-tag">01</div>
+    <div>
+      <div class="day-name">PUSH DAY</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:4px">Chest &middot; Shoulders &middot; Triceps</div>
+      <div class="day-meta">
+        <span class="badge badge-blue">Mon + Thu</span>
+        <span class="badge badge-red">45&ndash;55 min</span>
+        <span class="badge badge-green">Zero Equipment</span>
+      </div>
+    </div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>30 jumping jacks</li><li>10 arm circles each direction</li><li>10 shoulder rolls</li><li>10 push-up to down-dog</li><li>Dead hang 30s (optional)</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pushup_h-h" onclick="openAnimModal('pushup')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Chest &middot; Triceps &middot; Anterior Delt</div>
+    <div class="exercise-name">Standard Push-Up</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 12&ndash;15</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Hands shoulder-width. Chest touches floor. Lock out at top. Body = straight plank throughout.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('pushup')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-wide_push_h-h" onclick="openAnimModal('wide_push')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Outer Chest &middot; Width</div>
+    <div class="exercise-name">Wide Push-Up</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Hands 1.5&times; shoulder width. Emphasises outer pecs and gives a deeper chest stretch.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('wide_push')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-diamond_h-h" onclick="openAnimModal('diamond')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Triceps &middot; Inner Chest</div>
+    <div class="exercise-name">Diamond Push-Up</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Hands form a diamond under sternum. Elbows travel back, not out. Hardest push-up variant.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('diamond')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pike_h-h" onclick="openAnimModal('pike')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Shoulders &middot; Anterior + Medial</div>
+    <div class="exercise-name">Pike Push-Up</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10&ndash;12</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Hips high, body inverted-V. Lower head toward floor between hands. OHP equivalent at home.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('pike')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-decline_h-h" onclick="openAnimModal('decline')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Upper Chest &middot; Clavicular Head</div>
+    <div class="exercise-name">Decline Push-Up (Feet on Chair)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10</span><span class="chip">Rest 60s</span><span class="chip">Chair Needed</span></div>
+    <div class="tip">Feet elevated on chair. Creates incline press angle. Targets upper pec shelf.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('decline')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-chair_dip_h-h" onclick="openAnimModal('chair_dip')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Triceps &middot; All 3 Heads</div>
+    <div class="exercise-name">Chair Tricep Dip</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12&ndash;15</span><span class="chip">Rest 60s</span><span class="chip">Chair Needed</span></div>
+    <div class="tip">Fingers forward on chair edge. Keep torso upright for tricep focus. Full lockout at top.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('chair_dip')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pushup_h-h" onclick="openAnimModal('planche')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Anterior Delt &middot; Chest &middot; Core</div>
+    <div class="exercise-name">Pseudo Planche Push-Up</div>
+    <div class="sets-row"><span class="chip hi">2 &times; 8</span><span class="chip">Rest 75s</span><span class="chip">Advanced</span></div>
+    <div class="tip">Lean forward, hands near hips. Elite delt and chest overload with bodyweight only.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('planche')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</div>
+</div><div class="home-split" id="split-pull">
+<div class="section">
+  <div class="section-header">
+    <div class="day-tag">02</div>
+    <div>
+      <div class="day-name">PULL DAY</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:4px">Back &middot; Biceps &middot; Rear Delts</div>
+      <div class="day-meta">
+        <span class="badge badge-blue">Tue + Fri</span>
+        <span class="badge badge-red">40&ndash;50 min</span>
+        <span class="badge badge-green">Zero Equipment</span>
+      </div>
+    </div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>10 door-frame rows</li><li>15 towel pull-aparts</li><li>10 cat-cow stretches</li><li>30s passive hang on door frame</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-table_row_h-h" onclick="openAnimModal('table_row')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Lats &middot; Mid-Back &middot; Biceps</div>
+    <div class="exercise-name">Table / Door Row</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 12&ndash;15</span><span class="chip">Rest 75s</span><span class="chip">Table Needed</span></div>
+    <div class="tip">Lie under sturdy table, grip edge, pull chest to table. Body must be straight as a plank.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('table_row')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bicep_curl-h" onclick="openAnimModal('towel_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Biceps &middot; Full Range</div>
+    <div class="exercise-name">Towel Bicep Curl</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15</span><span class="chip">Rest 60s</span><span class="chip">Towel + Door</span></div>
+    <div class="tip">Loop towel around door handle. Lean back, curl your bodyweight. Supinate at top.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('towel_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-superman_h-h" onclick="openAnimModal('superman')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Lower Back &middot; Glutes &middot; Rear Delts</div>
+    <div class="exercise-name">Superman Hold</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12</span><span class="chip">1s hold at top</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Face down. Lift arms + legs simultaneously. 1-sec hold at top. Activates entire posterior chain.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('superman')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-rear_fly-h" onclick="openAnimModal('pull_apart')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Posterior Delt &middot; Rhomboids</div>
+    <div class="exercise-name">Rear Delt Pull-Apart (Towel)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 20</span><span class="chip">Rest 45s</span><span class="chip">Towel Needed</span></div>
+    <div class="tip">Hold t-shirt/towel with both hands, pull apart hard. Feel rear delts fire. Critical for posture.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('pull_apart')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-rdl-h" onclick="openAnimModal('arch_hold')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Entire Posterior Chain</div>
+    <div class="exercise-name">Arch Body Hold</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 20s hold</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Face down, arms overhead. Lift chest and legs simultaneously. Hold 20 seconds.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('arch_hold')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bicep_curl-h" onclick="openAnimModal('iso_curl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Biceps &middot; Peak Density</div>
+    <div class="exercise-name">Isometric Bicep Curl (Table)</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 30s each</span><span class="chip">Rest 45s</span><span class="chip">Table Needed</span></div>
+    <div class="tip">Place hand under table edge, press up hard. Isometric loading builds peak density.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('iso_curl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</div>
+</div><div class="home-split" id="split-legs">
+<div class="section">
+  <div class="section-header">
+    <div class="day-tag">03</div>
+    <div>
+      <div class="day-name">LEG DAY</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:4px">Quads &middot; Hamstrings &middot; Calves &middot; Glutes</div>
+      <div class="day-meta">
+        <span class="badge badge-blue">Wed + Sat</span>
+        <span class="badge badge-red">50&ndash;60 min</span>
+        <span class="badge badge-green">Zero Equipment</span>
+      </div>
+    </div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>20 bodyweight squats</li><li>10 hip circles each side</li><li>10 leg swings each side</li><li>10 glute bridges</li><li>30s pigeon stretch each side</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bw_squat_h-h" onclick="openAnimModal('bw_squat')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Glutes &middot; Hamstrings</div>
+    <div class="exercise-name">Bodyweight Squat</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 20</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Hip-width stance, depth below parallel. Chest tall. Own your range before adding difficulty.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('bw_squat')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-jump_squat_h-h" onclick="openAnimModal('jump_squat')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Glutes &middot; Explosive Power</div>
+    <div class="exercise-name">Jump Squat</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12</span><span class="chip">Rest 75s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Squat then explode upward. Land softly through balls of feet then heels.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('jump_squat')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-bss_h-h" onclick="openAnimModal('bss')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Glutes &middot; Single Leg</div>
+    <div class="exercise-name">Bulgarian Split Squat</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10 each</span><span class="chip">Rest 75s</span><span class="chip">Chair Needed</span></div>
+    <div class="tip">Rear foot elevated on chair. Front knee tracks toes. Hardest leg move with zero equipment.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('bss')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-glute_br_h-h" onclick="openAnimModal('glute_br')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Glutes &middot; Hamstrings</div>
+    <div class="exercise-name">Glute Bridge</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 20</span><span class="chip">1s squeeze at top</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Lie on back, drive hips up, squeeze glutes hard at top. Hold 1 sec. Never rush this.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('glute_br')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-wall_sit_h-h" onclick="openAnimModal('wall_sit')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Isometric Endurance</div>
+    <div class="exercise-name">Wall Sit</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 45&ndash;60s</span><span class="chip">Build to 90s</span><span class="chip">Rest 60s</span></div>
+    <div class="tip">Back flat against wall, thighs parallel. Burns like nothing else. Build to 90 seconds over weeks.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('wall_sit')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-calf-h" onclick="openAnimModal('calf_step')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Calves &middot; Gastrocnemius</div>
+    <div class="exercise-name">Calf Raise (Step / Book Stack)</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 25</span><span class="chip">Full ROM</span><span class="chip">Rest 45s</span></div>
+    <div class="tip">Use step or book stack for full ROM. Full heel drop at bottom, peak squeeze at top.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('calf_step')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-glute_br_h-h" onclick="openAnimModal('slg_bridge')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Glutes &middot; Unilateral</div>
+    <div class="exercise-name">Single-Leg Glute Bridge</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15 each</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">One leg extended. Drive through heel only. Massive posterior chain and glute isolation.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('slg_bridge')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</div>
+</div><div class="home-split" id="split-core">
+<div class="section">
+  <div class="section-header">
+    <div class="day-tag">04</div>
+    <div>
+      <div class="day-name">CORE + ABS</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:4px">Full Core &middot; Obliques &middot; Lower Abs</div>
+      <div class="day-meta">
+        <span class="badge badge-blue">Daily 10-min or full session</span>
+        <span class="badge badge-red">20&ndash;30 min</span>
+        <span class="badge badge-green">Zero Equipment</span>
+      </div>
+    </div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>30s deep diaphragmatic breathing</li><li>10 pelvic tilts</li><li>10 dead bugs slow</li><li>10 cat-cow</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-plank_h-h" onclick="openAnimModal('plank')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Anterior Core &middot; Foundation</div>
+    <div class="exercise-name">Plank</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 60&ndash;90s</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Hollow body position. Squeeze every muscle. Don't let hips sag or pike. Add 5s each week.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('plank')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-hollow_h-h" onclick="openAnimModal('hollow')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Deep Core &middot; Gymnastics Base</div>
+    <div class="exercise-name">Hollow Body Hold</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 30&ndash;45s</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Lower back pressed to floor, arms overhead, legs low. Foundation of all bodyweight strength.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('hollow')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-v_up_h-h" onclick="openAnimModal('bicycle')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Obliques &middot; Rectus Abdominis</div>
+    <div class="exercise-name">Bicycle Crunch</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 20 each</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Slow and deliberate. Twist from thoracic spine, not neck. Elbow to opposite knee fully.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('bicycle')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-leg_raise_h2-h" onclick="openAnimModal('leg_raise_h')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Lower Abs &middot; Hip Flexors</div>
+    <div class="exercise-name">Leg Raise</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 15</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Lie flat, lower slowly &mdash; feet never touch floor. Posterior pelvic tilt at top.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('leg_raise_h')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-mt_climb_h-h" onclick="openAnimModal('mt_climb')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Core &middot; Cardio &middot; Hip Flexors</div>
+    <div class="exercise-name">Mountain Climber</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 20 each</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Plank position. Drive knees to chest alternating. Keep hips level &mdash; never bounce or pike.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('mt_climb')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-side_plank_h-h" onclick="openAnimModal('side_plank')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Obliques &middot; Lateral Core</div>
+    <div class="exercise-name">Side Plank</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 30s each</span><span class="chip">Rest 30s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Stack feet or stagger for balance. Hips fully elevated. Straight line ear to ankle.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('side_plank')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-v_up_h-h" onclick="openAnimModal('v_up')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Full Abs &middot; Advanced Compression</div>
+    <div class="exercise-name">V-Up</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 12</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Lift arms and legs simultaneously. Reach hands to feet. Control the descent every rep.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('v_up')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</div>
+</div><div class="home-split" id="split-full">
+<div class="section">
+  <div class="section-header">
+    <div class="day-tag">05</div>
+    <div>
+      <div class="day-name">FULL BODY BURN</div>
+      <div style="font-size:14px;color:var(--muted);margin-top:4px">All Muscles &middot; HIIT Style</div>
+      <div class="day-meta">
+        <span class="badge badge-blue">Sun or any swap</span>
+        <span class="badge badge-red">35&ndash;45 min</span>
+        <span class="badge badge-green">Zero Equipment</span>
+      </div>
+    </div>
+  </div>
+  <div class="protocol-box"><div class="protocol-title">Warm-Up Protocol</div><ul class="protocol-list"><li>2 min jumping jacks</li><li>10 arm circles</li><li>10 leg swings</li><li>10 push-up to downdog</li><li>10 inchworms</li></ul></div>
+  <div class="workout-grid"><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-burpee_h-h" onclick="openAnimModal('burpee')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Full Body &middot; Conditioning King</div>
+    <div class="exercise-name">Burpee</div>
+    <div class="sets-row"><span class="chip hi">4 &times; 10</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Chest to floor push-up, explosive jump at top. Most hated, most effective conditioning test.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('burpee')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pushup_h-h" onclick="openAnimModal('pu_row')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Chest &middot; Lats &middot; Core Anti-rotation</div>
+    <div class="exercise-name">Push-Up to Row</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 8 each</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Push-up then side-plank row each arm. Combines push and pull in one brilliant move.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('pu_row')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-jump_lunge_h-h" onclick="openAnimModal('jump_lunge')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Quads &middot; Glutes &middot; Explosive</div>
+    <div class="exercise-name">Jump Lunge</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10 each</span><span class="chip">Rest 75s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Lunge, explode up, switch legs mid-air. Land softly. Power + cardio combo.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('jump_lunge')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-inchworm_h-h" onclick="openAnimModal('bear_crawl')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Shoulders &middot; Core &middot; Hips</div>
+    <div class="exercise-name">Bear Crawl</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10m &times; 2</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Knees 2 inches off floor. Opposite hand + foot move together. Slow = strength, fast = cardio.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('bear_crawl')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-pushup_h-h" onclick="openAnimModal('pu_tap')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Chest &middot; Core Anti-rotation</div>
+    <div class="exercise-name">Push-Up Shoulder Tap</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 10 each</span><span class="chip">Rest 60s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">After push-up, tap opposite shoulder without rotating hips. Tests true core stability.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('pu_tap')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-jump_squat_h-h" onclick="openAnimModal('squat_tuck')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Legs &middot; Core &middot; Explosive</div>
+    <div class="exercise-name">Squat Jump Tuck</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 8</span><span class="chip">Rest 75s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Jump and pull knees to chest at peak height. Land softly. Most demanding home power move.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('squat_tuck')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div><div class="workout-card">
+  <div class="card-svg-wrap" id="svg-inchworm_h-h" onclick="openAnimModal('inchworm')"></div>
+  <div class="card-body">
+    <div class="muscle-tag">Hamstrings &middot; Shoulders &middot; Core</div>
+    <div class="exercise-name">Inchworm</div>
+    <div class="sets-row"><span class="chip hi">3 &times; 8</span><span class="chip">Rest 45s</span><span class="chip">Zero Equipment</span></div>
+    <div class="tip">Hinge, walk hands out to plank, walk feet back. Combines mobility and full-body strength.</div>
+  </div>
+  <button class="play-btn blue-btn" onclick="openAnimModal('inchworm')">&#9654;&nbsp; PLAY ANIMATION</button>
+</div></div>
+</div>
+</div>
+</div><!-- end home-page -->
+
+<script src="svgs.js"></script>
+<script src="animations.js"></script>
+<script src="app.js"></script>
+<script>
+// Inject all SVGs into card wrappers on load — robust auto-derivation, no manual map needed.
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelectorAll('[id^="svg-"]').forEach(function(el){
+    // strip the "svg-" prefix and any trailing "-h" suffix (used to dedupe home-page ids)
+    var key = el.id.replace(/^svg-/, '').replace(/-h$/, '');
+    if (SVG_DATA[key]) {
+      setSVG(el, key);
+    } else {
+      console.warn('No SVG_DATA entry for key:', key, 'from element id:', el.id);
+      var isHome = !!el.closest('#home-page');
+      setSVG(el, isHome ? 'pushup_h' : 'bench');
+    }
+  });
+});
+</script>
+</body>
+</html>
